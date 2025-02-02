@@ -1,18 +1,18 @@
-enum Category {
+export enum Category {
   GalactasGuide = "Galacta's Guide",
   RivalryRising = "Rivalry Rising",
   HeroicJourney = "Heroic Journey",
   ChronoverseSaga = "Chronoverse Saga",
 }
 
-interface Achievement {
+export interface Achievement {
   category: Category
   name: string
   description: string
   points: number
 }
 
-const ACHIEVEMENTS: Achievement[] = [
+export const ACHIEVEMENTS: Achievement[] = [
   // Galacta's Guide
   {
     category: Category.GalactasGuide,
