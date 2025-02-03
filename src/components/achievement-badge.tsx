@@ -1,8 +1,12 @@
 import { Achievement } from "@/achievements"
 
-export default function AchievementBadge({ category, name, description, points }: Achievement) {
+type AchievementBadgeProps = Achievement & {
+  onClick: () => void
+}
+
+export default function AchievementBadge({ category, name, description, points, onClick }: AchievementBadgeProps) {
   return (
-    <div className="flex flex-row justify-between w-96 h-24 bg-slate-100 border-b-4 border-b-slate-300 p-4">
+    <div className="flex flex-row justify-between w-full h-24 bg-slate-100 border-b-4 border-b-slate-300 p-4" onClick={onClick}>
       <span>
         <h1 className="font-bold">{name}</h1>
         <p className="text-sm line-clamp-2 text-ellipsis">{description}</p>

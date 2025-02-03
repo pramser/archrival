@@ -23,16 +23,16 @@ export default function Home() {
     setSearchQuery(query)
   }
 
+  const achievements = ACHIEVEMENTS.filter(({ name }) => name.toLowerCase().includes(searchQuery.toLowerCase()))
+
   return (
     <div className="items-center justify-items-center min-h-screen p-4 pb-20 gap-16 sm:p-12 font-[family-name:var(--font-geist-sans)]">
       <header className="flex flex-col">
         <h1 className="text-xl font-bold">Pinned Achievements</h1>
         <p className="text-sm text-gray-500">Click on an achievement to pin it.</p>
-        <div className="flex flex-row gap-2 row-start-1 items-center h-24">
+        <div className="flex flex-col sm:flex-row gap-2 row-start-1 items-center min-h-24">
           {pinnedAchievements.map((_, i) => (
-            <div key={i} onClick={() => removePinnedAchievement(i)}>
-              <AchievementBadge key={i} {...pinnedAchievements[i]} />
-            </div>
+            <AchievementBadge key={i} {...pinnedAchievements[i]} onClick={() => removePinnedAchievement(i)} />
           ))}
         </div>
         <hr className="my-8 border-gray-200" />
@@ -48,11 +48,10 @@ export default function Home() {
       </header>
       <main className="flex flex-col">
         <h1 className="text-xl font-bold">All Achievements</h1>
+        <p className="text-sm text-gray-500">Click on an achievement to pin it.</p>
         <div className="flex flex-wrap flex-row gap-2 row-start-2 items-center sm:items-start">
-          {ACHIEVEMENTS.filter(({ name }) => name.toLowerCase().includes(searchQuery.toLowerCase())).map((achievement, i) => (
-            <div key={i} onClick={() => addPinnedAchievement(achievement)}>
-              <AchievementBadge {...achievement} />
-            </div>
+          {achievements.map((achievement, i) => (
+            <AchievementBadge key={i} {...achievement} onClick={() => addPinnedAchievement(achievement)} />
           ))}
         </div>
       </main>
